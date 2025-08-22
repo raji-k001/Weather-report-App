@@ -1,14 +1,15 @@
 import React from "react";
 
 const getBackgroundImage = (temp) => {
-  if (temp <= 0) return "public/images/freezing.jpg";   
-  if (temp >= 1 && temp < 10) return "public/images/cold.jpg"; 
-  if (temp >= 10 && temp < 20) return "public/images/mild.jpg"; 
-  if (temp >= 20 && temp < 30) return "public/images/warm.jpg";  
-  if (temp >= 30 && temp < 38) return "public/images/hot.jpg";   
-  if (temp >= 38) return "public/images/extreme.jpg";             
-  return "public/images/default.jpg";
+  if (temp <= 0) return "/images/freezing.jpg";   // 🧊 Freezing
+  if (temp > 0 && temp <= 10) return "/images/cold.jpg";  // 🥶 Cold
+  if (temp > 10 && temp <= 20) return "/images/mild.jpg";  // 😊 Mild
+  if (temp > 20 && temp <= 30) return "/images/warm.jpg";  // 😎 Warm
+  if (temp > 30 && temp <= 38) return "/images/hot.jpg";   // 🥵 Hot
+  if (temp > 38) return "/images/extreme.jpg";             // 🌋 Extreme
+  return "/images/default.jpg"; 
 };
+
 
 const Background = ({ temp, children }) => {
   return (
