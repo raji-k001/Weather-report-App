@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import axios from "axios";   
-import Background from "./Background";
+import Background, { getWeatherEmoji } from "./Background"; // ✅ import emoji helper
 import Search from "./Search";
 import WeatherCard from "./WeatherCard";
 
@@ -42,12 +41,18 @@ const WeatherApp = () => {
   };
 
   return (
-    <Background temp={weather ? weather.main.temp : null}>
+    <Background condition={weather ? weather.weather[0].main : null}>
       <div className="bg-white p-6 rounded-xl w-[500px] bg-opacity-80 shadow-xl">
         <h2 className="text-2xl font-bold mb-2">Weather Report</h2>
-        <p className="mb-4">Checking the sky’s mood swings for your city 🌦️</p>
+        <p className="mb-4">Checking the sky’s mood swings for your city </p>
 
         <Search city={city} setCity={setCity} onSearch={getWeather} />
+
+        {weather && (
+          <div className="mt-4 text-6xl animate-bounce text-center">
+            {getWeatherEmoji(weather.weather[0].main)}
+          </div>
+        )}
 
         {loading && <p className="mt-4 text-blue-600">Loading...</p>}
         {error && <p className="mt-4 text-red-500">{error}</p>}
